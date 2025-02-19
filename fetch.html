@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   let data = fetch("https://jsonplaceholder.typicode.com/posts");
+      //   console.log(data);
+      //   data
+      //     .then((x) => x.json())
+      //     .then((x) =>{
+      //         let res=x;
+      //     res.map((x)=>{console.log(x.title)})}).catch()
+      let main_div = document.createElement("main");
+            document.append(main_div);
+            main_div.style.display = "flex";
+            main_div.style.flexWrap = "wrap";
+      let data1 = fetch(
+        "https://67b4445d392f4aa94faa16ea.mockapi.io/travelling"
+      );
+      // console.log(data1);
+      data1
+        .then((x) => x.json())
+        .then((x) => {
+          //   console.log(x);
+          let res = x;
+          res.map((x) => {
+  
+            let image = document.createElement("img");
+            image.src = x.image;
+            image.style.height = "350px";
+            image.style.width = "350px";
+            let name = document.createElement("h1");
+            name.innerHTML = x.name;
+            name.style.border = "3px solid purple";
+            name.style.height = "max content";
+            name.style.width = "25vw";
+            name.style.justifyContent = "center";
+            name.style.backgroundColor = "pink";
+            let location = document.createElement("h2");
+            location.innerHTML = x.location;
+            location.style.border = "2px solid yellow";
+            location.style.backgroundColor = "orange";
+            location.style.width = "25vw";
+            let card = document.createElement("div");
+            // card.append(image, name, location);
+            card.style.border = "5px solid red";
+            card.style.padding = "20px";
+            card.style.width = "350px";
+            card.style.backgroundColor = "green";
+            location.style.justifyContent = "center";
+            main_div.append(card);
+          });
+        })
+        .catch((x) => {
+          console.log(x);
+        });
+    </script>
+  </body>
+</html>
