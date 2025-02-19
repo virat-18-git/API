@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let data={
+            "name":"shiva prasad",
+            "city":"hyd",
+            "email":"shiva1@gmail.com"
+        }
+        let api="https://67b4445d392f4aa94faa16ea.mockapi.io/travelling"
+        let apiCall=fetch(api,{
+            method:"PUT",
+            // method:"DELETE"
+            headers:{"content-type":"applcation/json"},
+            body:JSON.stringify(data)
+            // body:JSON.stringify(data) for deleting no need this
+        })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">click mee for insert</button>
+    <button id="btn1">click me to get the data</button>
+    <p id="p1"></p>
+    <script>
+      let data = { name: "shiva", city: "hyd", email: "shiva@gmail.com" };
+      let button = document.getElementById("btn");
+      let getbutton = document.getElementById("btn1");
+      let msg = document.getElementById("p1");
+      button.addEventListener("click", () => {
+        let url = "https://67b4445d392f4aa94faa16ea.mockapi.io/travelling";
+        let req = fetch(url, {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        req.then((x) => {
+          console.log(x.status);
+          if (x.status == 201) {
+            msg.innerHTML = "data successfully uploaded";
+          }
+        });
+      });
+      getbutton.addEventListener("click", () => {
+        let data = fetch(
+          "https://67b4445d392f4aa94faa16ea.mockapi.io/travelling",
+          {
+            method: "get",
+          }
+        );
+        data
+          .then((x) => {
+            console.log(x);
+            if(x.status==200){
+                msg.innerHTML="data successfully fetches"
+            }
+            else if(x.status==400){
+                msg.innerHTML="data not found"
+            }
+            else if(x.status==500){
+                msg.innerHTML="interval server error"
+            }
+            else{
+                msg.innerHTML="something went wrong"
+            }
+            return x.json();
+          })
+          .then((x) => console.log(x));
+      });
+    </script>
+  </body>
+</html>
